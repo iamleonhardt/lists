@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { database } from "./firebase";
 import "./App.css";
+import { card } from "./Components/card";
+
+let cardStyles = {
+  height: '20px',
+  width: '20px'
+}
 
 class App extends Component {
   constructor(props) {
@@ -37,16 +43,18 @@ class App extends Component {
       .push(this.state.newData);
   }
 
+
+
   render() {
     return (
       <div className="App">
         {/* {JSON.stringify(this.state.data, null, 2)} */}
         {
-          <ul>
+          <div>
             {Object.entries(this.state.data).map(([key, value]) => (
-              <li key={key}>{value}</li>
+              <card style={cardStyles} key={key} listcontent={value}/>
             ))}
-          </ul>
+          </div>
         }
         <form className="App-form" onSubmit={this.handleSubmit}>
           <input
