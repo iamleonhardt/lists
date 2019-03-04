@@ -1,15 +1,23 @@
 import React, { Component } from "react";
 
-let cardStyles = {
-    height: '20px',
-    width: '20px'
-}
-class card extends Component {
+class Card extends Component {
+  state = {};
+  render() {
+    let styles = {
+      width: "90vw",
+      margin: "2vh auto",
+      padding: "2vh",
+      backgroundColor: "#fafafa",
+      boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+    };
 
-    state = { }
-    render() { 
-        return ( <div className="card" style={cardStyles}> { this.props.listcontent } </div> );
-    }
+    const { text } = this.props;
+    return (
+      <div className="card" style={styles}>
+        {text}
+      </div>
+    );
+  }
 }
- 
-export default card ;
+
+export default Card;
