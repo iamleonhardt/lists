@@ -4,7 +4,7 @@ class Card extends Component {
   state = {};
   render() {
     let styles = {
-      width: "90vw",
+      borderRadius: "2px",
       margin: "2vh auto",
       padding: "2vh",
       backgroundColor: "#fafafa",
@@ -20,4 +20,5 @@ class Card extends Component {
   }
 }
 
+export const exportTest = {};
 export default Card;

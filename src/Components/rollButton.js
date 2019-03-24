@@ -1,25 +1,25 @@
-import React, { Component } from "react";
+import React from "react";
 
-class RollButton extends Component {
-  state = {};
-
-  handleClick = e => {
+const RollButton = () => {
+  let handleClick = e => {
     console.log("Clicked, e: ", e);
   };
-  render() {
-    let styles = {
-      backgroundColor: "#dd4444",
-      color: "#fff",
-      padding: "10px",
-      fontSize: "20px",
-      borderRadius: "4px"
-    };
-    return (
-      <button style={styles} onClick={this.handleClick}>
-        Roll
-      </button>
-    );
-  }
-}
+
+  let styles = {
+    backgroundColor: "darkolivegreen",
+    color: "gainsboro",
+    padding: ".5em 2em",
+    fontSize: "16px",
+    cursor: "pointer",
+    borderRadius: "5px",
+    border: "2px solid gainsboro"
+  };
+
+  return (
+    <button style={styles} onClick={handleClick}>
+      Roll
+    </button>
+  );
+};
 
 export default RollButton;

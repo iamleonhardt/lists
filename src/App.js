@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { database } from "./firebase";
 import "./App.css";
-import Card from "./Components/card";
-import ListHeader from "./Components/listHeader";
+import List from "./Components/List";
 
 class App extends Component {
   constructor(props) {
@@ -11,53 +10,29 @@ class App extends Component {
       data: [],
       newData: ""
     };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  componentDidMount() {
-    database.ref("List").on("value", snap => {
-      this.setState({
-        data: snap.val()
-      });
-    });
-  }
-
-  handleChange(e) {
+  handleChange = e => {
     const newData = e.target.value;
     this.setState({
       newData
     });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     database
       .ref()
       .child("List")
       .push(this.state.newData);
-  }
+  };
 
   render() {
     return (
-      <div className="App">
-        <ListHeader title="100 Shops" />
-        <div>
-          {Object.entries(this.state.data).map(([key, value]) => (
-            <Card key={key} text={value} />
-          ))}
-        </div>
-
-        <form className="App-form" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.newData}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
-      </div>
+      <React.Fragment>
+        <List listName="Things" />
+        <List listName="List" />
+      </React.Fragment>
     );
   }
 }
