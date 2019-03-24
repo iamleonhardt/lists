@@ -2,7 +2,10 @@ import React from "react";
 
 const RollButton = () => {
   let handleClick = e => {
-    console.log("Clicked, e: ", e);
+    let ranNum = Math.floor(Math.random() * 22);
+    let elem = document.getElementById(ranNum);
+
+    elem.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   let styles = {

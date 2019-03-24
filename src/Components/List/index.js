@@ -49,7 +49,7 @@ class List extends Component {
     };
 
     let cardListStyles = {
-      height: "90vh",
+      height: "80vh",
 
       overflow: "auto"
     };
@@ -58,8 +58,8 @@ class List extends Component {
       <div className="listContainer" style={styles}>
         <ListHeader title="100 Shops" />
         <div className="listContainer" style={cardListStyles}>
-          {Object.entries(this.state.data).map(([key, value]) => (
-            <Card key={key} text={value} />
+          {Object.entries(this.state.data).map(([key, value], i) => (
+            <Card key={key} id={i} text={value} />
           ))}
         </div>
         <form className="App-form" onSubmit={this.handleSubmit}>
