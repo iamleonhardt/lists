@@ -3,32 +3,17 @@ import Card from "../Card/";
 import ListHeader from "../ListHeader/";
 import { database } from "../../firebase";
 import RollButton from "../RollButton";
+import AddData from "../AddDataForm";
 
 class List extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      newData: ""
+      data: []
     };
   }
 
   state = {};
-
-  handleChange = e => {
-    const newData = e.target.value;
-    this.setState({
-      newData
-    });
-  };
-
-  handleSubmit = e => {
-    e.preventDefault();
-    database
-      .ref()
-      .child(this.props.listName)
-      .push(this.state.newData);
-  };
 
   componentDidMount() {
     database.ref(this.props.listName).on("value", snap => {
@@ -65,14 +50,7 @@ class List extends Component {
           ))}
         </div>
 
-        <form className="App-form" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            value={this.state.newData}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
-        </form>
+        <AddData listName={this.props.listName} />
       </div>
     );
   }
