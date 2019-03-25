@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Card from "../Card/";
 import ListHeader from "../ListHeader/";
 import { database } from "../../firebase";
+import RollButton from "../RollButton";
 
 class List extends Component {
   constructor(props) {
@@ -43,25 +44,27 @@ class List extends Component {
       padding: "10px",
       width: "290px",
       textAlign: "center",
-      backgroundColor: "#3d3d3d",
+      backgroundColor: "#ddd",
       fontSize: "1em",
       verticalAlign: "top"
     };
 
     let cardListStyles = {
       height: "80vh",
-
       overflow: "auto"
     };
 
     return (
       <div className="listContainer" style={styles}>
-        <ListHeader title="100 Shops" />
+        <ListHeader title={this.props.listName} />
+        <RollButton />
+
         <div className="listContainer" style={cardListStyles}>
           {Object.entries(this.state.data).map(([key, value], i) => (
             <Card key={key} id={i} text={value} />
           ))}
         </div>
+
         <form className="App-form" onSubmit={this.handleSubmit}>
           <input
             type="text"

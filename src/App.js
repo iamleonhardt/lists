@@ -30,8 +30,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <List listName="Things" />
-        <List listName="List" />
+        <List listName="100 Shops" />
+        <List listName="100 Townsfolk" />
       </React.Fragment>
     );
   }

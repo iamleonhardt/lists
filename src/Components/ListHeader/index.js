@@ -8,6 +8,7 @@ class ListHeader extends Component {
 
     let headerStyles = {
       height: "10vh",
+      lineHeight: "10vh",
       backgroundColor: "gainsboro",
       backgroundImage:
         "url('https://i.pinimg.com/originals/80/47/f0/8047f0869f4b3bd09a81d0faa149a25f.jpg')",
@@ -15,8 +16,8 @@ class ListHeader extends Component {
     };
 
     let titleStyles = {
-      color: "#fff",
-      fontSize: "1.5em"
+      color: "antiquewhite",
+      fontSize: "1.3em"
     };
 
     return (
@@ -24,7 +25,6 @@ class ListHeader extends Component {
         <div id="headerTitle" style={titleStyles}>
           {title}
         </div>
-        <RollButton />
       </div>
     );
   }
