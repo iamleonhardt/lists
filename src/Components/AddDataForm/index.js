@@ -20,11 +20,12 @@ class AddData extends Component {
       .ref()
       .child(this.props.listName)
       .push(this.state.newData);
+    this.setState({ newData: "" });
   };
 
   render() {
     return (
-      <form className="listForm" onSubmit={this.handleSubmit}>
+      <form className="App-form" onSubmit={this.handleSubmit}>
         <input
           type="text"
           value={this.state.newData}

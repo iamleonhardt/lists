@@ -1,19 +1,22 @@
 import React from "react";
 
-const RollButton = () => {
+const RollButton = props => {
   let handleClick = e => {
-    let ranNum = Math.floor(Math.random() * 23);
+    let ranNum = Math.floor(Math.random() * props.length);
+
     let elem = document.getElementById(ranNum);
     elem.style.backgroundColor = "antiquewhite";
     elem.scrollIntoView({ behavior: "smooth", block: "center" });
   };
 
   let styles = {
+    width: "100%",
     backgroundColor: "darkolivegreen",
     color: "gainsboro",
     fontSize: "14px",
     cursor: "pointer",
-    border: "none"
+    border: "none",
+    outline: "none"
   };
 
   return (

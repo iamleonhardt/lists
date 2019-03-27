@@ -13,8 +13,6 @@ class List extends Component {
     };
   }
 
-  state = {};
-
   componentDidMount() {
     database.ref(this.props.listName).on("value", snap => {
       this.setState({
@@ -42,11 +40,16 @@ class List extends Component {
     return (
       <div className="listContainer" style={styles}>
         <ListHeader title={this.props.listName} />
-        <RollButton />
-
+        <RollButton length={Object.keys(this.state.data).length} />
         <div className="listContainer" style={cardListStyles}>
           {Object.entries(this.state.data).map(([key, value], i) => (
-            <Card key={key} id={i} text={value} />
+            <Card
+              key={key}
+              listName={this.props.listName}
+              dataId={key}
+              id={i}
+              text={value}
+            />
           ))}
         </div>
 

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import RollButton from "../RollButton";
 
 class ListHeader extends Component {
   state = {};
