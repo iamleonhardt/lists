@@ -18,7 +18,8 @@ const Card = props => {
     margin: "2vh auto",
     padding: "2vh",
     backgroundColor: "#fafafa",
-    boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)"
+    boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
+    cursor: "default"
   };
 
   let idStyles = {
@@ -30,10 +31,20 @@ const Card = props => {
     fontSize: "10px"
   };
 
+  let xStyles = {
+    position: "absolute",
+    right: "6px",
+    top: "6px",
+    fontSize: "10px",
+    cursor: "pointer"
+  };
+
   return (
     <div className="card" id={id} style={styles}>
       {text}
-      <div onClick={deleteItem}>X</div>
+      <div style={xStyles} onClick={deleteItem}>
+        X
+      </div>
       <div style={idStyles}>#{id}</div>
     </div>
   );
