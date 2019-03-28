@@ -14,11 +14,14 @@ class List extends Component {
   }
 
   componentDidMount() {
-    database.ref(this.props.listName).on("value", snap => {
-      this.setState({
-        data: snap.val()
+    database
+      .ref("ListItems")
+      .child(this.props.listName)
+      .on("value", snap => {
+        this.setState({
+          data: snap.val()
+        });
       });
-    });
   }
 
   render() {
@@ -40,7 +43,10 @@ class List extends Component {
     return (
       <div className="listContainer" style={styles}>
         <ListHeader title={this.props.listName} />
-        <RollButton length={Object.keys(this.state.data).length} />
+        <RollButton
+          listName={this.props.listName}
+          length={Object.keys(this.state.data).length}
+        />
         <div className="listContainer" style={cardListStyles}>
           {Object.entries(this.state.data).map(([key, value], i) => (
             <Card

@@ -6,7 +6,8 @@ const Card = props => {
 
   let deleteItem = () => {
     database
-      .ref(listName)
+      .ref("ListItems")
+      .child(listName)
       .child(props.dataId)
       .remove();
     console.log("delete item " + props.dataId);
@@ -40,7 +41,7 @@ const Card = props => {
   };
 
   return (
-    <div className="card" id={id} style={styles}>
+    <div className="card" id={listName + "-" + id} style={styles}>
       {text}
       <div style={xStyles} onClick={deleteItem}>
         X

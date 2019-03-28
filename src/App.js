@@ -12,6 +12,14 @@ class App extends Component {
     };
   }
 
+  componentDidMount() {
+    database.ref("Lists").on("value", snap => {
+      this.setState({
+        data: snap.val()
+      });
+    });
+  }
+
   handleChange = e => {
     const newData = e.target.value;
     this.setState({
@@ -30,8 +38,9 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        <List listName="100 Shops" />
-        <List listName="100 Townsfolk" />
+        {Object.entries(this.state.data).map(([key, value]) => (
+          <List key={key} listName={key} />
+        ))}
       </React.Fragment>
     );
   }

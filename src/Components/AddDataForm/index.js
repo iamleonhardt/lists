@@ -17,7 +17,7 @@ class AddData extends Component {
     e.preventDefault();
     console.log(this.state);
     database
-      .ref()
+      .ref("ListItems")
       .child(this.props.listName)
       .push(this.state.newData);
     this.setState({ newData: "" });

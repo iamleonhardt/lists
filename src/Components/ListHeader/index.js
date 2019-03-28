@@ -1,9 +1,26 @@
 import React, { Component } from "react";
+import { database } from "../../firebase";
 
 class ListHeader extends Component {
-  state = {};
+  state = { title: "" };
+
+  componentDidMount() {
+    database
+      .ref("Lists")
+      .child(this.props.title)
+      .child("Name")
+      .on("value", snapshot => {
+        this.setState({ title: snapshot.val() });
+      });
+  }
+
+  // let title = database
+  //   .ref("Lists")
+  //   .child(this.props.listName)
+  //   .child("Name")
+
   render() {
-    const { title } = this.props;
+    // const { title } = this.props;
 
     let headerStyles = {
       height: "10vh",
@@ -22,7 +39,7 @@ class ListHeader extends Component {
     return (
       <div style={headerStyles}>
         <div id="headerTitle" style={titleStyles}>
-          {title}
+          {this.state.title}
         </div>
       </div>
     );

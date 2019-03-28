@@ -4,7 +4,7 @@ const RollButton = props => {
   let handleClick = e => {
     let ranNum = Math.floor(Math.random() * props.length);
 
-    let elem = document.getElementById(ranNum);
+    let elem = document.getElementById(props.listName + "-" + ranNum);
     elem.style.backgroundColor = "antiquewhite";
     elem.scrollIntoView({ behavior: "smooth", block: "center" });
   };
