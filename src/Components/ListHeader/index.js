@@ -14,14 +14,7 @@ class ListHeader extends Component {
       });
   }
 
-  // let title = database
-  //   .ref("Lists")
-  //   .child(this.props.listName)
-  //   .child("Name")
-
   render() {
-    // const { title } = this.props;
-
     let headerStyles = {
       height: "10vh",
       lineHeight: "10vh",
