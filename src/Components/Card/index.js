@@ -1,8 +1,44 @@
 import React from "react";
 import { database } from "../../firebase";
+import styled, { css } from "styled-components";
+
+const StyledCard = styled.div`
+  width: 84%;
+  border-radius: 2px;
+  position: relative;
+  margin: 2vh auto;
+  padding: 2vh;
+  background-color: #fafafa;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  cursor: default;
+  font-size: 12px;
+
+  ${props =>
+    props.active &&
+    css`
+      background-color: bisque;
+    `}
+`;
+
+const IdLabel = styled.div`
+  text-align: right;
+  color: lightgrey;
+  position: absolute;
+  right: 6px;
+  bottom: 6px;
+  font-size: 10px;
+`;
+
+const DeleteButton = styled.div`
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  font-size: 10px;
+  cursor: pointer;
+`;
 
 const Card = props => {
-  const { text, id, listName } = props;
+  const { text, id, listName, active } = props;
 
   let deleteItem = () => {
     database
@@ -10,44 +46,14 @@ const Card = props => {
       .child(listName)
       .child(props.dataId)
       .remove();
-    console.log("delete item " + props.dataId);
-  };
-  let styles = {
-    width: "88%",
-    borderRadius: "2px",
-    position: "relative",
-    margin: "2vh auto",
-    padding: "2vh",
-    backgroundColor: "#fafafa",
-    boxShadow: "0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23)",
-    cursor: "default"
-  };
-
-  let idStyles = {
-    textAlign: "right",
-    color: "lightgrey",
-    position: "absolute",
-    right: "10px",
-    bottom: "5px",
-    fontSize: "10px"
-  };
-
-  let xStyles = {
-    position: "absolute",
-    right: "6px",
-    top: "6px",
-    fontSize: "10px",
-    cursor: "pointer"
   };
 
   return (
-    <div className="card" id={listName + "-" + id} style={styles}>
+    <StyledCard active={active} id={listName + "-" + id}>
       {text}
-      <div style={xStyles} onClick={deleteItem}>
-        X
-      </div>
-      <div style={idStyles}>#{id}</div>
-    </div>
+      <DeleteButton onClick={deleteItem}>X</DeleteButton>
+      <IdLabel>#{id}</IdLabel>
+    </StyledCard>
   );
 };
 
