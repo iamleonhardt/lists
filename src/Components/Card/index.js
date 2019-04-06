@@ -1,22 +1,22 @@
 import React from "react";
-import { database } from "../../firebase";
+import { firestore } from "../../firebase";
 import styled, { css } from "styled-components";
 
 const StyledCard = styled.div`
-  width: 84%;
+  width: 80%;
   border-radius: 2px;
   position: relative;
   margin: 2vh auto;
   padding: 2vh;
   background-color: #fafafa;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 2px 5px rgba(0, 0, 0, 0.23);
   cursor: default;
   font-size: 12px;
 
   ${props =>
     props.active &&
     css`
-      background-color: bisque;
+      background-color: #caebf2;
     `}
 `;
 
@@ -41,11 +41,24 @@ const Card = props => {
   const { text, id, listName, active } = props;
 
   let deleteItem = () => {
-    database
-      .ref("ListItems")
-      .child(listName)
-      .child(props.dataId)
-      .remove();
+    let deleteRef = firestore
+      .collection("ListItems")
+      .doc(listName)
+      .collection("Items")
+      .doc(props.dataId)
+      .delete()
+      .then(() => {
+        console.log("Document succesfully deleted");
+      })
+      .catch(error => {
+        console.log("Error removing document: ", error);
+      });
+
+    // database
+    //   .ref("ListItems")
+    //   .child(listName)
+    //   .child(props.dataId)
+    //   .remove();
   };
 
   return (
