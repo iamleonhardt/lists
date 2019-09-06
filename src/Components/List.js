@@ -1,22 +1,21 @@
 import React, { Component } from "react";
-import Card from "../Card/";
-import { firestore } from "../../firebase";
+import Card from "./Card.js";
+import { firestore } from "../firebase";
 import styled from "styled-components";
-import { collectIdsAndDocs } from "../../utils";
+import { collectIdsAndDocs } from "../utils";
 
 const StyledList = styled.div`
   display: grid;
   grid-template-rows: 1fr 0.5fr minmax(60vh, 75vh) 0.5fr;
   text-align: center;
-  /* background-color: #ddd; */
-  border: 1px solid lightgrey;
+  background-size: cover;
   font-size: 1em;
   vertical-align: top;
 `;
 
 const ListHeader = styled.div`
   background-color: gainsboro;
-  /* background-image: url("https://i.pinimg.com/originals/80/47/f0/8047f0869f4b3bd09a81d0faa149a25f.jpg"); */
+  background-image: url("https://i.pinimg.com/originals/80/47/f0/8047f0869f4b3bd09a81d0faa149a25f.jpg");
   background-size: cover;
   width: 80%;
   margin: 2vh auto 0;
@@ -24,7 +23,7 @@ const ListHeader = styled.div`
 `;
 
 const Title = styled.div`
-  /* color: antiquewhite; */
+  color: antiquewhite;
   font-size: 1.3em;
 `;
 
@@ -118,11 +117,8 @@ class List extends Component {
       .collection("Items");
 
     this.unsubscribe = listItemDocsRef.onSnapshot(snapshot => {
-      console.log("snapshot is: ", snapshot);
       const listItems = snapshot.docs.map(collectIdsAndDocs);
       this.setState({ listItems });
-
-      console.log("state.listItems: ", this.state.listItems);
     });
   }
 

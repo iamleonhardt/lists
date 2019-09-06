@@ -1,5 +1,5 @@
 import React from "react";
-import { firestore } from "../../firebase";
+import { firestore } from "../firebase";
 import styled, { css } from "styled-components";
 
 const StyledCard = styled.div`
@@ -53,12 +53,6 @@ const Card = props => {
       .catch(error => {
         console.log("Error removing document: ", error);
       });
-
-    // database
-    //   .ref("ListItems")
-    //   .child(listName)
-    //   .child(props.dataId)
-    //   .remove();
   };
 
   return (
